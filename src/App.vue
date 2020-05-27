@@ -11,7 +11,7 @@
         <b-collapse id="nav-collapse" is-nav>
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
-            <b-nav-item :to="{name: 'About'}" >About</b-nav-item>
+            <b-nav-item :to="{name: 'About'}">About</b-nav-item>
             
             <b-nav-item :to="{name: 'Home'}">Home</b-nav-item>
 
@@ -20,7 +20,7 @@
               <b-dropdown-item href="#">Ver emergencias</b-dropdown-item>
             </b-nav-item-dropdown>
             
-            <b-nav-item to="">Usuarios</b-nav-item>
+            <b-nav-item :to="{name: 'Users'}">Usuarios</b-nav-item>
 
             <b-nav-item to="">Iniciar Sesion</b-nav-item>
           </b-navbar-nav>
