@@ -27,6 +27,16 @@ Vue.use(VueRouter)
     path: '/users',
     name: 'Users',
     component: () => import('../views/Users.vue')
+  },
+  {
+    path: '/emergencies',
+    name: 'Emergencies',
+    component: () => import('../views/Emergencies.vue')
+  },
+  {
+    path: '/emergencies/create',
+    name: 'CreateEmergency',
+    component: () => import('../views/CreateEmergency.vue')
   }
 ]
 

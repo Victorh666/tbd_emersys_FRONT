@@ -15,9 +15,9 @@
             
             <b-nav-item :to="{name: 'Home'}">Home</b-nav-item>
 
-            <b-nav-item-dropdown text="Emergencias" right>
-              <b-dropdown-item href="#">Crear emergencia</b-dropdown-item>
-              <b-dropdown-item href="#">Ver emergencias</b-dropdown-item>
+            <b-nav-item-dropdown text="Emergencia" right>
+              <b-dropdown-item :to="{name: 'Emergencies'}">Ver emergencias</b-dropdown-item>
+              <b-dropdown-item :to="{name: 'CreateEmergency'}">Crear emergencia</b-dropdown-item>
             </b-nav-item-dropdown>
             
             <b-nav-item :to="{name: 'Users'}">Usuarios</b-nav-item>
@@ -28,7 +28,7 @@
       </b-navbar>
     </div>
 
-    <b-container align="center">
+    <b-container>
       <router-view/>
     </b-container>
   </div>

@@ -9,10 +9,10 @@
                     <h5>Ranking entre: {{valueR1}} y {{valueR2}}</h5>
                 </b-col>
                 <b-col> 
-                    <b-form-input id="range-1" v-model="valueR1" type="range" min="0" max="5" step="0.1"></b-form-input>        
+                    <b-form-input v-model="valueR1" type="range" min="0" max="5" step="0.1"></b-form-input>        
                 </b-col>         
                 <b-col>
-                    <b-form-input id="range-2" v-model="valueR2" type="range" min="0" max="5" step="0.1"></b-form-input>
+                    <b-form-input v-model="valueR2" type="range" min="0" max="5" step="0.1"></b-form-input>
                 </b-col>
                 <b-col>
                     <b-button block variant="outline-info" size="sm" @click="usersFilter(valueR1,valueR2)">Buscar</b-button>
