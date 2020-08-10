@@ -22,6 +22,8 @@
             
             <b-nav-item :to="{name: 'Users'}">Usuarios</b-nav-item>
 
+            <b-nav-item :to="{name: 'Work'}">Tareas</b-nav-item>
+
             <b-nav-item to="">Iniciar Sesion</b-nav-item>
           </b-navbar-nav>
         </b-collapse>

@@ -6,13 +6,16 @@
         <b-card v-if="optionSelected === 2" class="mb-3"> 
             <b-row>
                 <b-col>
-                    <h5>Ranking entre: {{valueR1}} y {{valueR2}}</h5>
+                    <h5>Ranking entre:</h5>
                 </b-col>
                 <b-col> 
-                    <b-form-input v-model="valueR1" type="range" min="0" max="5" step="0.1"></b-form-input>        
-                </b-col>         
+                    <b-form-spinbutton v-model="valueR1" type="range" min="0" max="5" step="0.5" inline></b-form-spinbutton>        
+                </b-col> 
                 <b-col>
-                    <b-form-input v-model="valueR2" type="range" min="0" max="5" step="0.1"></b-form-input>
+                    <h5> y </h5>        
+                </b-col>
+                <b-col>
+                    <b-form-spinbutton v-model="valueR2" type="range" min="0" max="5" step="0.5" inline></b-form-spinbutton>
                 </b-col>
                 <b-col>
                     <b-button block variant="outline-info" size="sm" @click="usersFilter(valueR1,valueR2)">Buscar</b-button>
