@@ -14,12 +14,14 @@
             <b-nav-item :to="{name: 'About'}">About</b-nav-item>
             
             <b-nav-item :to="{name: 'Home'}">Home</b-nav-item>
-
+            
+            <b-nav-item :to="{name: 'Emergencies'}">Emergencia</b-nav-item>
+            <!--
             <b-nav-item-dropdown text="Emergencia" right>
               <b-dropdown-item :to="{name: 'Emergencies'}">Ver emergencias</b-dropdown-item>
               <b-dropdown-item :to="{name: 'CreateEmergency'}">Crear emergencia</b-dropdown-item>
             </b-nav-item-dropdown>
-            
+            -->
             <b-nav-item :to="{name: 'Users'}">Usuarios</b-nav-item>
 
             <b-nav-item :to="{name: 'Work'}">Tareas</b-nav-item>

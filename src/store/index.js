@@ -22,7 +22,16 @@ export default new Vuex.Store({
     tasks:
     [
       {id: 1, nombre: 'tarea 1', descrip: 'Esta es la tarea 1', cant_vol_requeridos: 3, cant_vol_inscritos: 2, finicio: '08-10-2020', ffinal: '24-06-2021', id_emergencia:1, id_estado: 1},
-      {id: 2, nombre: 'tarea 2', descrip: 'Esta es la tarea 2, distinta a la 1', cant_vol_requeridos: 5, cant_vol_inscritos: 5, finicio: '08-10-2020', ffinal: '24-06-2021', id_emergencia:1, id_estado: 0}
+      {id: 2, nombre: 'tarea 2', descrip: 'Esta es la tarea 2, distinta a la 1', cant_vol_requeridos: 5, cant_vol_inscritos: 5, finicio: '08-10-2020', ffinal: '24-06-2021', id_emergencia:1, id_estado: 0},
+      {id: 3, nombre: 'tarea 3', descrip: 'Esta es la tarea 3, distinta a la 1 y 2', cant_vol_requeridos: 3, cant_vol_inscritos: 2, finicio: '08-10-2020', ffinal: '24-06-2021', id_emergencia:1, id_estado: 1},
+      {id: 4, nombre: 'tarea 4', descrip: 'Esta es la tarea 4, distinta a la 1,2 y 3', cant_vol_requeridos: 5, cant_vol_inscritos: 5, finicio: '08-10-2020', ffinal: '24-06-2021', id_emergencia:1, id_estado: 0}
+    ],
+    emergencies:
+    [
+      {id: 1, nombre: 'emergencia 1', descrip: 'Esta es la emergencia 1', finicio: '08-10-2020', ffinal: '24-06-2021', id_institucion:1},
+      {id: 2, nombre: 'emergencia 2', descrip: 'Esta es la emergencia 2, distinta a la 1', finicio: '08-10-2020', ffinal: '24-06-2021', id_institucion:2},
+      {id: 3, nombre: 'emergencia 3', descrip: 'Esta es la emergencia 3, distinta a la 1 y 2', finicio: '08-10-2020', ffinal: '24-06-2021', id_institucion:3},
+      {id: 4, nombre: 'emergencia 4', descrip: 'Esta es la emergencia 4, distinta a la 1,2 y 3', finicio: '08-10-2020', ffinal: '24-06-2021', id_institucion:2}
     ]
   },
 

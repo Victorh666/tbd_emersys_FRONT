@@ -4,7 +4,6 @@
             <!--      {id: 1, nombre: 'tarea 1', descrip: 'wena choro soy la tarea 1', cant_vol_requeridos: 3, cant_vol_inscritos: 2, finicio: 'el dia que me quiera matar', ffinal: 'el dia que me mate', id_emergencia:1, id_estado: 1}-->
             <b-col v-for="task in tasks" :key="task.id"
                 class="mb-3" cols="12" md="6" lg="4">
-                {{task.ranking}}
                 <b-card no-body style="max-width: 20rem;" img-src="https://www.telesurtv.net/__export/1539448568164/sites/telesur/img/multimedia/2018/10/13/conozca_los_desastres_naturales_mxs_mortxferos_de_2018-reuters-edit_mini.jpg_1718483347.jpg" img-alt="Image" img-top>
                     <b-card-body>
                         <b-card-title>{{task.nombre}}</b-card-title>
