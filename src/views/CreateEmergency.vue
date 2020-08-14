@@ -14,7 +14,7 @@
                 ></b-form-input>
             </b-form-group>
 
-
+            <!--
             <b-form-group>
                 <h6><strong>Institución</strong></h6>
                 <b-row>
@@ -27,7 +27,21 @@
                 </b-row>
 
             </b-form-group>
-
+            -->
+            <b-form-group>
+                <h6><strong>Institución</strong></h6>
+                <b-row>
+                    <b-col cols="3">
+                        Nombre de la institución:
+                    </b-col>
+                    <b-col  cols="9">                    
+                        <b-form-select  v-model="nameInstitution" >
+                        <option v-for="institution in institutions" :key="institution.id" :value="institution.id">{{institution.nombre}}</option>
+                        </b-form-select>
+                    </b-col>
+                </b-row>
+            </b-form-group>
+            <!--
             <b-form-group>
                 <h6><strong>Tareas</strong></h6>
                 <b-row class="mb-3">
@@ -69,7 +83,7 @@
                 </b-form-checkbox>
                 
             </b-form-group>
-
+            -->
 
             <b-form-group >
                 <h6><strong>Descripción</strong></h6>
@@ -111,14 +125,14 @@
 
             <b-row class="p-4">
                 <b-col>
-                    <b-button block variant="outline-info" @click="verifyData">Crear</b-button>
+                    <b-button block variant="outline-info" @click="verifyData" >Crear</b-button>
                 </b-col>
                 <b-col>
                     <b-button block variant="outline-dark" :to="{name: 'Dashboard'}" >Cancelar</b-button>
                 </b-col>
             </b-row>
 
-            <b-modal ref="validationCompleted" title="Emergencia creada" ok-only>
+            <b-modal ref="validationCompleted" title="Emergencia creada" ok-only v-on:click="redirigir()">
                 <p class="my-4">La emergencia fue creada excitosamente!</p>
                 <h6>{{newEmergency}}</h6>
             </b-modal>
@@ -130,6 +144,7 @@
 
 
 <script>
+import axios from 'axios';
 export default {
     name: 'CreateEmergency',
     data() {
@@ -170,11 +185,24 @@ export default {
             min: minDate,
             dataValidation: 0,
             incompleteAlert: false,
-            newEmergency: []
+            newEmergency: [],
+            institutions: null
       }
     },
-    
+    created(){
+        this.getInstituciones()
+    },
     methods: {
+        async getInstituciones(){
+            let datos = await axios.get('http://localhost:8080/instituciones/all')
+            this.institutions=await datos.data
+        },
+        postEmergencie(){
+            console.log("precione un boton")
+        },
+        redirigir(){
+             window.location.href = '/emergencies'
+        },
         addWork(){
             if(this.newWork == ''){
                 return
@@ -199,7 +227,13 @@ export default {
                 this.workList.forEach(element => {
                     this.workListAux.push(element.tarea);
                 });
-
+                axios.post('http://localhost:8080/emergencias/add',{
+                    nombre: this.emergencyName,
+                    descrip: this.newDescription,
+                    finicio: this.dateI,
+                    ffin: this.dateF,
+                    id_institucion: this.nameInstitution
+                })
                 this.newEmergency = {
                     name: this.emergencyName,
                     idInstitution: this.nameInstitution, 
@@ -209,6 +243,7 @@ export default {
                     iDate: this.dateI,
                     fDate: this.dateF
                 }
+
                 this.$refs['validationCompleted'].show();
                 this.emergencyName = '';
                 this.workList = [];
