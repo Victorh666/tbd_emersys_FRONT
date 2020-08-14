@@ -47,6 +47,11 @@ Vue.use(VueRouter)
     path: '/emergencies/Task',
     name: 'Tasks',
     component: () => import('../views/Tasks.vue')
+  },
+  {
+    path: '/Test',
+    name: 'Test',
+    component: () => import('../views/Test.vue')
   }
 ]
 
