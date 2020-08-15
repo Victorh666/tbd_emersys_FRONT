@@ -11,9 +11,10 @@
         <b-collapse id="nav-collapse" is-nav>
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
+            <!--
             <b-nav-item :to="{name: 'About'}">About</b-nav-item>
-            
-            <b-nav-item :to="{name: 'Home'}">Home</b-nav-item>
+            -->
+            <b-nav-item :to="{name: 'Dashboard'}">Home</b-nav-item>
             
             <b-nav-item :to="{name: 'Emergencies'}">Emergencia</b-nav-item>
             <!--

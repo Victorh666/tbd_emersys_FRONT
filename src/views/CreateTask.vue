@@ -68,7 +68,7 @@
                     <b-button block variant="outline-info" @click="verifyData"  >Crear</b-button>
                 </b-col>
                 <b-col>
-                    <b-button block variant="outline-dark" :to="{name: 'Dashboard'}" >Cancelar</b-button>
+                    <b-button block variant="outline-dark" v-on:click="redirigir()" >Cancelar</b-button>
                 </b-col>
             </b-row>
         </b-container>
@@ -123,7 +123,7 @@ export default {
                     finicio: this.dateI,
                     ffin: this.dateF,
                     id_emergencia: this.$route.params.id,
-                    id_estado: 1
+                    id_estado: 2
                 }).then(this.mensaje="Creado correctamente!", this.Alert=true, this.estilo="success")
                 .catch(error => {
                 console.log(error)

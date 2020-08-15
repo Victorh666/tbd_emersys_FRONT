@@ -116,7 +116,7 @@
                     <b-button block variant="outline-info" @click="verifyData"  >Crear</b-button>
                 </b-col>
                 <b-col>
-                    <b-button block variant="outline-dark" :to="{name: 'Dashboard'}" >Cancelar</b-button>
+                    <b-button block variant="outline-dark" v-on:click="redirigir()" >Cancelar</b-button>
                 </b-col>
             </b-row>
             <!--

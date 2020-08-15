@@ -94,15 +94,18 @@ export default {
             let datos = await axios.get('http://localhost:8080/emergencias/getHabilidades/'+this.$route.params.id)
             this.emergencieSkillList=await datos.data
         },
-        asignarHabilidades(){
-            console.log(this.skillList)     
+        asignarHabilidades(){    
             for(var i = 0; i < this.skillList.length; i++)    
             {    axios.post('http://localhost:8080/eme_habilidades/add',{
                     id_emergencia: this.emergencie.id  ,
                     id_habilidad: this.skillList[i]
                 })
             }
-            window.location.href = '/emergencies'
+            if(this.skillList.length !=0)
+            {
+                window.location.href = '/emergencies'
+            }
+            
         }
     }
 }
