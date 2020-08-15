@@ -47,6 +47,11 @@ Vue.use(VueRouter)
     path: '/emergencies/Task',
     name: 'Tasks',
     component: () => import('../views/Tasks.vue')
+  },
+  {
+    path: '/emergencies/abilities/:id/:instId',
+    name: 'abilities',
+    component: () => import('../views/abilities.vue')
   }
 ]
 

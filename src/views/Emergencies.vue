@@ -18,7 +18,6 @@
                         <b-list-group-item class="d-flex justify-content-between align-items-center">
                             Fecha de termino: {{emergencie.ffin}}
                         </b-list-group-item>
-                        <div id="datos">
                         <b-list-group-item class="d-flex justify-content-between align-items-center">
                             Institucion: en proceso
                             
@@ -28,7 +27,10 @@
                                 <b-icon stacked icon="circle" variant="warning"></b-icon>
                             </b-iconstack>
                         </b-list-group-item>
-                        </div>
+                        <b-card-body>
+                            <a :href="`/emergencies/abilities/${emergencie.id}/${emergencie.id_institucion}`" class="card-link" > Editar habilidades</a>
+                            
+                        </b-card-body>
                     </b-list-group>
                 </b-card>
             </b-col>     
@@ -52,6 +54,9 @@
             },
             Redirigir(page){
                 window.location.href = page
+            },
+            RedirigirHabilidad(){
+                window.location.href='/emergencies/abilities/'+emergencie.id+'/'+emergencie.id_institucion
             }
         },
         created(){

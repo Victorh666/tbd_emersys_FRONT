@@ -69,21 +69,8 @@
                 </b-table>
 
             </b-form-group>
-
-            <b-form-group >
-                <h6><strong>Habilidades</strong></h6>
-                <b-form-checkbox
-                    v-for="option in options"
-                    v-model="skillList"
-                    :key="option.value"
-                    :value="option.value"
-                    name="flavour-4a"
-                    inline>
-                    {{ option.text }}
-                </b-form-checkbox>
-                
-            </b-form-group>
             -->
+            
 
             <b-form-group >
                 <h6><strong>Descripción</strong></h6>
@@ -125,18 +112,36 @@
 
             <b-row class="p-4">
                 <b-col>
-                    <b-button block variant="outline-info" @click="verifyData" >Crear</b-button>
+                    <b-button block variant="outline-info" @click="verifyData"  >Crear</b-button>
                 </b-col>
                 <b-col>
                     <b-button block variant="outline-dark" :to="{name: 'Dashboard'}" >Cancelar</b-button>
                 </b-col>
             </b-row>
-
-            <b-modal ref="validationCompleted" title="Emergencia creada" ok-only v-on:click="redirigir()">
+            <!--
+            <b-modal ref="validationCompleted" title="Emergencia creada" >
                 <p class="my-4">La emergencia fue creada excitosamente!</p>
-                <h6>{{newEmergency}}</h6>
+                <h6>{{emergencies}}</h6>
             </b-modal>
-            
+            <b-modal ref="my-modal" hide-footer title="Asignar Habilidades">
+                <div class="d-block text-center">
+                    <b-form-group >
+                    <h6><strong>Habilidades</strong></h6>
+                    <b-form-checkbox
+                        v-for="ability in abilities"
+                        v-model="skillList"
+                        :key="ability.id"
+                        :value="ability.id"
+                        name="flavour-4a"
+                        inline>
+                        {{ ability.descrip }}
+                    </b-form-checkbox>
+                
+            </b-form-group>
+                </div>
+                <b-button class="mt-3" variant="outline-danger" block @click="asignarHabilidades">Close Me</b-button>
+            </b-modal>
+            -->
         </b-container>
     </div>
 </template>
@@ -186,17 +191,35 @@ export default {
             dataValidation: 0,
             incompleteAlert: false,
             newEmergency: [],
-            institutions: null
+            institutions: null,
+            abilities: null,
+            emergencies: null
       }
     },
     created(){
-        this.getInstituciones()
+        this.getInstituciones(),
+        this.getHabilidades()
     },
+
     methods: {
+        showModal() {
+        this.$refs['my-modal'].show()
+        },
+        asignarHabilidades(){
+            console.log(this.emergencies[this.emergencies.length -1])
+        },
         async getInstituciones(){
             let datos = await axios.get('http://localhost:8080/instituciones/all')
             this.institutions=await datos.data
         },
+        async getHabilidades(){
+            let datos = await axios.get('http://localhost:8080/habilidades/all')
+            this.abilities=await datos.data
+        },
+        async getEmergencies(){
+            let datos = await axios.get('http://localhost:8080/emergencias/all')
+            this.emergencies=await datos.data
+        },        
         postEmergencie(){
             console.log("precione un boton")
         },
@@ -234,24 +257,9 @@ export default {
                     ffin: this.dateF,
                     id_institucion: this.nameInstitution
                 })
-                this.newEmergency = {
-                    name: this.emergencyName,
-                    idInstitution: this.nameInstitution, 
-                    work: this.workListAux,                    
-                    skills: this.skillList,
-                    decription: this.newDescription,
-                    iDate: this.dateI,
-                    fDate: this.dateF
-                }
+                this.getEmergencies()
 
-                this.$refs['validationCompleted'].show();
-                this.emergencyName = '';
-                this.workList = [];
-                this.workListAux = [];
-                this.skillList = [];
-                this.newDescription = '';
-                this.dateI = '';
-                this.dateF = '';
+                this.redirigir()
             }
             else {
                 this.incompleteAlert = true;
