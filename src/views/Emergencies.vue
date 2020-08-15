@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button type="button" v-on:click="Redirigir('/emergencies/create')" style="float:right" >Crear Emergencia</button>
+        <b-button type="button" v-on:click="Redirigir('/emergencies/create')" style="float:right" >Crear Emergencia</b-button>
         <b-row>
             <b-col v-for="emergencie in emergencies" :key="emergencie.id"
                 class="mb-3" cols="12" md="6" lg="4" >
