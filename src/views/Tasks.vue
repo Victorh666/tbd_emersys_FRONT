@@ -26,7 +26,7 @@
                             Fecha de inicio: {{task.finicio}}
                         </b-list-group-item>
                         <b-list-group-item class="d-flex justify-content-between align-items-center">
-                            Fecha de termino: {{task.ffinal}}
+                            Fecha de termino: {{task.ffin}}
                         </b-list-group-item>
                         <b-list-group-item class="d-flex justify-content-between align-items-center">
                             Estado: {{Estado(task.id_estado)}}
@@ -38,6 +38,10 @@
                                 <b-icon stacked icon="circle" variant="dark"></b-icon>
                             </b-iconstack>
                         </b-list-group-item>
+                        <b-card-body>
+                            <a :href="`/emergencies/task/abilities/${task.id}`" class="card-link" > Editar habilidades</a>
+
+                        </b-card-body>
                     </b-list-group>
                 </b-card>
             </b-col>     

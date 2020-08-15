@@ -57,7 +57,13 @@ Vue.use(VueRouter)
     path: '/emergencies/Task/create/:id',
     name: 'CreateTasks',
     component: () => import('../views/CreateTask.vue')
+  },
+  {
+    path: '/emergencies/task/abilities/:id',
+    name: 'TaskAbility',
+    component: () => import('../views/taskAbilities.vue')
   }
+
 ]
 
 const router = new VueRouter({

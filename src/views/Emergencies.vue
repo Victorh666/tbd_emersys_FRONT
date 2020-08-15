@@ -19,7 +19,7 @@
                             Fecha de termino: {{emergencie.ffin}}
                         </b-list-group-item>
                         <b-list-group-item class="d-flex justify-content-between align-items-center">
-                            Institucion: en proceso
+                            Institucion: 
                             
                             <b-iconstack font-scale="2">
                                 <b-icon stacked icon="circle-fill" variant="success"></b-icon>
@@ -45,7 +45,8 @@
         name: 'Tasks',
         data(){
             return{
-                emergencies:null
+                emergencies:null,
+                muestras:null
             }
         },
         methods:{
@@ -58,7 +59,25 @@
             },
             RedirigirHabilidad(){
                 window.location.href='/emergencies/abilities/'+emergencie.id+'/'+emergencie.id_institucion
-            }
+            },
+            getInstitucion(id){
+                 axios.get('http://localhost:8080/instituciones/'+ id)
+                    .then(response => {
+
+                        console.log(response.data)
+                        this.muestras = response.data
+                        console.log("aqui estoy")
+                        console.log(this.muestras)
+
+                    })
+                    .catch(error => {
+
+                        console.log(error)
+
+                    })
+                    return this.muestras.nombre
+        },
+            
         },
         created(){
             this.getEmergencies()
