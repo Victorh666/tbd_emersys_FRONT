@@ -87,7 +87,7 @@ export default {
         },        
         async getTaskAbilities(){
             let datos = await axios.get('http://localhost:8080/tareas/getHabilidades/'+this.$route.params.id)
-            this.emergencieSkillList=await datos.data
+            this.taskSkillList=await datos.data
         },
         redirigir(){
             window.history.back()
@@ -98,7 +98,7 @@ export default {
             {
                 for(var i = 0; i < this.skillList.length; i++)    
                 {    axios.post('http://localhost:8080/tarea_habilidades/add',{
-                        id_tarea: this.this.$route.params.id  ,
+                        id_tarea: this.$route.params.id  ,
                         id_emehab: this.skillList[i]
                     })
                 }
