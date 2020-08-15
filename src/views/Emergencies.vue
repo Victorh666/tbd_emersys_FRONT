@@ -30,6 +30,7 @@
                         <b-card-body>
                             <a :href="`/emergencies/abilities/${emergencie.id}/${emergencie.id_institucion}`" class="card-link" > Editar habilidades</a>
                             
+                            <a :href="`/emergencies/Task/${emergencie.id}`" class="card-link" > Ver tareas</a>
                         </b-card-body>
                     </b-list-group>
                 </b-card>

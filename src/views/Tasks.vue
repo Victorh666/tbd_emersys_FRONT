@@ -1,5 +1,6 @@
 <template>
     <div>
+        <b-button type="button" v-on:click="Redirigir()" style="float:right" >Crear Tarea</b-button>
         <b-row>
             <!--      {id: 1, nombre: 'tarea 1', descrip: 'wena choro soy la tarea 1', cant_vol_requeridos: 3, cant_vol_inscritos: 2, finicio: 'el dia que me quiera matar', ffinal: 'el dia que me mate', id_emergencia:1, id_estado: 1}-->
             <b-col v-for="task in tasks" :key="task.id"
@@ -46,23 +47,35 @@
 
 
 <script>
-import {mapState} from 'vuex';
+import axios from 'axios';
 
 export default {
     name: 'Tasks',
-    computed: {
-        ...mapState(['tasks'])
+    data(){
+        return{
+            tasks:null
+        }
+    },
+    created(){
+        this.getEmergencieTasks()
     },
     methods:{
+        async getEmergencieTasks(){
+                let datos = await axios.get('http://localhost:8080/emergencias/getTareas/' + this.$route.params.id)
+                this.tasks=await datos.data
+        },
         Estado(value1){
-            if (value1==1){
-                return "Cerrado"
+            if (value1==2){
+                return "Activo"
             }
             else
             {
-                return "Abierto"
+                return "Inactivo"
             }
         },
+        Redirigir(){
+            window.location.href='/emergencies/Task/create/' + this.$route.params.id
+        }
     }
 }
 </script>

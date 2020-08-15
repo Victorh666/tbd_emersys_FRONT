@@ -2,11 +2,12 @@
     <div class="CreateEmergency">
         <b-container class="border border rounded mb-4" >
             <h2 class="p-3" align="center">Nueva Emergencia</h2>
-            <b-alert v-model="incompleteAlert" variant="danger" dismissible class="mt-3">
-                Datos incompletos!
+            <b-alert v-model="Alert" :variant="estilo" dismissible class="mt-3">
+                {{mensaje}}
             </b-alert>
             <b-form-group class="mt-2">
-                <h6> <strong>Nombre</strong></h6>
+                <h6> <strong>Nombre</strong></h6>,
+                
                 <b-form-input
                     v-model="emergencyName"
                     required
@@ -189,11 +190,14 @@ export default {
             dateF: '',
             min: minDate,
             dataValidation: 0,
-            incompleteAlert: false,
+            Alert: false,
             newEmergency: [],
             institutions: null,
             abilities: null,
-            emergencies: null
+            emergencies: null,
+            mensaje:'',
+            estilo: ''
+            
       }
     },
     created(){
@@ -256,15 +260,32 @@ export default {
                     finicio: this.dateI,
                     ffin: this.dateF,
                     id_institucion: this.nameInstitution
+                }).then(this.mensaje="Creado correctamente!", this.Alert=true, this.estilo="success")
+                .catch(error => {
+                console.log(error)
+                this.errored = true
+                this.Alert=true
+                this.mensaje="DATOS ERRONEOS!"
+                this.estilo="danger"
                 })
-                this.getEmergencies()
+                .finally(this.loading=false)
 
-                this.redirigir()
-            }
+                this.emergencyName = '' 
+                this.workList = []
+                this.skillList = [] 
+                this.newDescription = ''
+                this.dateI = ''
+                this.dateF = ''
+
+                
+            }            
             else {
-                this.incompleteAlert = true;
+                this.mensaje="Datos incompletos!"
+                this.estilo="danger"
+                this.Alert = true;
             }
         }   
     }
 }
+
 </script>
