@@ -39,8 +39,12 @@
         </b-row>
         <b-modal ref="my-modal" hide-footer title="Institución">
             <h3 align="center">{{institucion}}</h3>
+            <!--
             <img  width="460"
             height="350" src="https://thumbs.gfycat.com/PlumpExemplaryCoral-size_restricted.gif" class="center">
+            -->
+            <img  width="460"
+            height="350" src="https://www.definicionabc.com/wp-content/uploads/Instituciones.jpg" class="center">
         <div class="d-block text-center" >
             
         </div>

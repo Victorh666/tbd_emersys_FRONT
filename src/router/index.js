@@ -51,7 +51,7 @@ Vue.use(VueRouter)
   {
     path: '/emergencies/abilities/:id/:instId',
     name: 'Abilities',
-    component: () => import('../views/abilities.vue')
+    component: () => import('../views/Abilities.vue')
   },
   {
     path: '/emergencies/Task/create/:id',
