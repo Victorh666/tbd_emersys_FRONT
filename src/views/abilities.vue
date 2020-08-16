@@ -3,11 +3,11 @@
         <b-container class="border border rounded mb-4" >
             <h2 class="p-3" align="center">Editar Habilidades </h2>
             <b-card>
-                <b-card-title >Nombre:</b-card-title>
+                <b-card-title >Nombre de la emergencia:</b-card-title>
                 <b-card-text align="center">{{emergencie.nombre}}</b-card-text>
             </b-card>
              <b-card>
-                <b-card-title >Descripción:</b-card-title>
+                <b-card-title >Descripción de la emergencia:</b-card-title>
                 <b-card-text align="center">{{emergencie.descrip}}</b-card-text>
             </b-card>
             <b-card>
@@ -46,9 +46,14 @@
                     </b-form-group>
                 </div>
             </b-card>
-            <div class="text-center">
-                <b-button type="button" v-on:click="asignarHabilidades()"  >Editar Habilidades</b-button>
-            </div>
+            <b-row class="p-4">
+                <b-col>
+                    <b-button block type="button" v-on:click="asignarHabilidades()"  >Editar Habilidades</b-button>
+                </b-col>
+                <b-col>
+                    <b-button block variant="outline-dark" v-on:click="redirigir()" >Cancelar</b-button>
+                </b-col>
+            </b-row>
         </b-container>
     </div>
 </template>
@@ -94,15 +99,23 @@ export default {
             let datos = await axios.get('http://localhost:8080/emergencias/getHabilidades/'+this.$route.params.id)
             this.emergencieSkillList=await datos.data
         },
-        asignarHabilidades(){
-            console.log(this.skillList)     
-            for(var i = 0; i < this.skillList.length; i++)    
-            {    axios.post('http://localhost:8080/eme_habilidades/add',{
-                    id_emergencia: this.emergencie.id  ,
-                    id_habilidad: this.skillList[i]
-                })
-            }
+        redirigir(){
             window.location.href = '/emergencies'
+        },
+        asignarHabilidades(){   
+            
+            if(this.skillList.length !=0)
+            { 
+                for(var i = 0; i < this.skillList.length; i++)
+                {    
+                    axios.post('http://localhost:8080/eme_habilidades/add',{
+                        id_emergencia: this.$route.params.id  ,
+                        id_habilidad: this.skillList[i]
+                    })
+                }
+                this.redirigir()
+            }
+            
         }
     }
 }

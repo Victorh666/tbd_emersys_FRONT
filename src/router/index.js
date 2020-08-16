@@ -44,15 +44,31 @@ Vue.use(VueRouter)
     component: () => import('../views/Work.vue')
   },
   {
-    path: '/emergencies/Task',
+    path: '/emergencies/Task/:id',
     name: 'Tasks',
     component: () => import('../views/Tasks.vue')
   },
   {
     path: '/emergencies/abilities/:id/:instId',
-    name: 'abilities',
+    name: 'Abilities',
     component: () => import('../views/abilities.vue')
+  },
+  {
+    path: '/emergencies/Task/create/:id',
+    name: 'CreateTasks',
+    component: () => import('../views/CreateTask.vue')
+  },
+  {
+    path: '/emergencies/task/abilities/:id',
+    name: 'TaskAbility',
+    component: () => import('../views/taskAbilities.vue')
+  },
+  {
+    path: '/usersPick',
+    name: 'UsersPcik',
+    component: () => import('../views/UsersPick.vue')
   }
+
 ]
 
 const router = new VueRouter({
