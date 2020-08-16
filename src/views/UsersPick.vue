@@ -110,7 +110,7 @@ export default {
         async getWorkAndVoluntaries(){
             let datos = await axios.get('http://localhost:8080/tareas/' + this.$route.params.id);
             this.work = await datos.data;
-            let datoss = await axios.get('http://localhost:8080/voluntarios/all');
+            let datoss = await axios.get('http://localhost:8080/tareas/getUnsummoned/'+ this.$route.params.id);
             this.voluntaries = await datoss.data;
             let voluntariesLen = this.voluntaries.length;
             let i = 0;
@@ -150,7 +150,7 @@ export default {
             flg_participa: -1,
             id_voluntario: id_vol,
             id_tarea: this.work.id
-            });
+            }).then(location.reload());
         }
     },
 
