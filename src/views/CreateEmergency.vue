@@ -6,7 +6,7 @@
                 {{mensaje}}
             </b-alert>
             <b-form-group class="mt-2">
-                <h6> <strong>Nombre</strong></h6>,
+                <h6> <strong>Nombre</strong></h6>
                 
                 <b-form-input
                     v-model="emergencyName"

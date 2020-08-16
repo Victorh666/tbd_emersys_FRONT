@@ -18,9 +18,10 @@
                         <b-list-group-item class="d-flex justify-content-between align-items-center">
                             Fecha de termino: {{emergencie.ffin}}
                         </b-list-group-item>
-                        <b-list-group-item class="d-flex justify-content-between align-items-center">
-                            Institucion: 
+                        <b-list-group-item class="d-flex justify-content-between align-items-center" v-on:click="showModal(emergencie.id_institucion)">
+                            Institucion click aqui => 
                             
+                                
                             <b-iconstack font-scale="2">
                                 <b-icon stacked icon="circle-fill" variant="success"></b-icon>
                                 <b-icon stacked icon="building" scale="0.5" variant="white"></b-icon>
@@ -36,6 +37,18 @@
                 </b-card>
             </b-col>     
         </b-row>
+        <b-modal ref="my-modal" hide-footer title="Institución">
+            <h3 align="center">{{institucion}}</h3>
+            <img  width="460"
+            height="350" src="https://thumbs.gfycat.com/PlumpExemplaryCoral-size_restricted.gif" class="center">
+        <div class="d-block text-center" >
+            
+        </div>
+        <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-button>
+        </b-modal>
+
+
+        
     </div>
 </template>
 
@@ -46,7 +59,9 @@
         data(){
             return{
                 emergencies:null,
-                muestras:null
+                muestras:null,
+                institucion:null,
+                counter:-1
             }
         },
         methods:{
@@ -60,24 +75,36 @@
             RedirigirHabilidad(){
                 window.location.href='/emergencies/abilities/'+emergencie.id+'/'+emergencie.id_institucion
             },
-            getInstitucion(id){
-                 axios.get('http://localhost:8080/instituciones/'+ id)
+            getemergenciesAndInstitucions(){
+                 axios.get('http://localhost:8080/emergencias/all')
                     .then(response => {
-
-                        console.log(response.data)
-                        this.muestras = response.data
-                        console.log("aqui estoy")
-                        console.log(this.muestras)
-
+                        this.emergencies = response.data
+                        for (var i=0; i<this.emergencies.length; i++)
+                        {
+                            axios.get('http://localhost:8080/instituciones/'+ this.emergencies[i].id_institucion)
+                            .then(response=> {
+                                this.instituciones.push(response.data.nombre)
+                            })
+                        }
                     })
                     .catch(error => {
 
                         console.log(error)
 
-                    })
-                    return this.muestras.nombre
-        },
-            
+                    })                 
+            },
+            mostrarInstitucion(id)
+            {
+                axios.get('http://localhost:8080/instituciones/'+id)
+                .then(response => {this.institucion=response.data.nombre})
+            },
+            showModal(id) {
+                this.mostrarInstitucion(id)
+                this.$refs['my-modal'].show()
+            },
+            hideModal() {
+                this.$refs['my-modal'].hide()
+            }            
         },
         created(){
             this.getEmergencies()
