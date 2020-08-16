@@ -26,10 +26,10 @@
                         </b-list-group-item>
                     </b-list-group>
 
-                    <b-card-body>
+                    <!-- <b-card-body>
                         <a href="#" class="card-link">Card link</a>
                         <a href="#" class="card-link">Detalles</a>
-                    </b-card-body>
+                    </b-card-body> -->
                 </b-card>
             </b-col>     
         </b-row>

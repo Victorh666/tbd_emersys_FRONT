@@ -16,7 +16,7 @@
 
                <b-row class="mb-2">
                   <b-col sm="2" class="text-sm"> <b>Descripción:</b></b-col>
-                  <b-col sm="5" class="text-sm left">   {{ row.item.descrip }}</b-col>
+                  <b-col sm="6" class="text-sm left">   {{ row.item.descrip }}</b-col>
                </b-row>
 
                <b-row class="mb-2">
@@ -28,10 +28,11 @@
                   <b-col sm="2" class="text-sm"><b>Fecha final:</b></b-col>
                   <b-col sm="7" class="text-sm left">  {{ row.item.ffin }}</b-col>
                   <b-col sm="3">
-                     <b-button href="/userspick" variant="info" size="sm" class="mr-2"> Inscribir Voluntario</b-button>    
+                     <b-button v-on:click="redirigir(row.item.id)" variant="info" size="sm" class="mr-2"> Inscribir Voluntario</b-button>    
                   </b-col>
                </b-row>
             </b-card>
+            
          </template>
       </b-table>
    </div>
@@ -48,7 +49,8 @@
             emerAux: null,
             fields: [{key: 'nombre', label: 'Tarea', sortable: true}, {key: 'emergencia', label: 'Emergencia', sortable: true},
             {key: 'voluntarios_rq_ins', label: 'Voluntarios Ins/Req'}, {key: 'show_details', label: 'Detalles'}],
-            workTable: []
+            workTable: [],
+            test: 100
          }
 
       },
@@ -65,6 +67,7 @@
 
             while (i < len){
                this.workTable.push({
+                  id: this.works[i].id,
                   nombre: this.works[i].nombre,
                   descrip: this.works[i].descrip,
                   finicio: this.works[i].finicio,
@@ -108,8 +111,14 @@
                estado = 'En proceso'
             }
             return estado;
+         },
+
+         redirigir(id){
+            window.location.href = '/userspick/' + id;
          }
       },
+
+
 
       created(){
          this.getWorks()

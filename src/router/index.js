@@ -51,7 +51,7 @@ Vue.use(VueRouter)
   {
     path: '/emergencies/abilities/:id/:instId',
     name: 'Abilities',
-    component: () => import('../views/Abilities.vue')
+    component: () => import('../views/abilities.vue')
   },
   {
     path: '/emergencies/Task/create/:id',
@@ -64,7 +64,7 @@ Vue.use(VueRouter)
     component: () => import('../views/taskAbilities.vue')
   },
   {
-    path: '/usersPick',
+    path: '/userspick/:id',
     name: 'UsersPcik',
     component: () => import('../views/UsersPick.vue')
   }
