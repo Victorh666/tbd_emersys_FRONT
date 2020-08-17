@@ -12,18 +12,18 @@
 
                     <b-list-group flush>
                         <b-list-group-item class="d-flex justify-content-between align-items-center">
-                            Ranking {{vol.id}}
-                            <b-form-rating id="rating-disabled" color="#ff8800" inline :value="vol.id" no-border readonly></b-form-rating>                            
+                            Puntaje de ranking: {{vol.ranking}}
+                            <b-form-rating id="rating-disabled" color="#ff8800" inline :value="vol.ranking" no-border readonly></b-form-rating>                            
                         
                         </b-list-group-item>
-                        <b-list-group-item class="d-flex justify-content-between align-items-center">
+                       <!-- <b-list-group-item class="d-flex justify-content-between align-items-center">
                             Tareas completadas
-                            <b-avatar icon="calendar3" :size="40" badge="666" badge-top variant="ligth" badge-variant="dark"></b-avatar>
+                            
                         </b-list-group-item>
                         <b-list-group-item class="d-flex justify-content-between align-items-center">
                             Habilidades
-                            <b-avatar icon="award" :size="40" badge="666" badge-top variant="ligth" badge-variant="dark"></b-avatar>
-                        </b-list-group-item>
+                            
+                        </b-list-group-item> -->
                     </b-list-group>
 
                     <!-- <b-card-body>
@@ -41,7 +41,7 @@
 export default {
   name: 'Showusers',
   props: {
-    filteredVoluntariesRender : null
+    filteredVoluntariesRender : Array
   }
 }
 </script>
