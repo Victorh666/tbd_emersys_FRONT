@@ -42,7 +42,7 @@
 
                     <b-list-group flush>
                         <b-list-group-item class="d-flex justify-content-between align-items-center">
-                            Ranking {{vol.ranking}}
+                            Ranking: {{vol.ranking}}
                             <b-form-rating id="rating-disabled" color="#ff8800" inline :value="vol.ranking" no-border readonly></b-form-rating>                            
                         <!--
                         </b-list-group-item>
@@ -138,7 +138,7 @@ export default {
                 }
                 j = j + 1;
             }
-            return 0;
+            return "Sin ranking";
         },
 
         async usersFilter(value1, value2){
