@@ -43,8 +43,8 @@
 
                     <b-list-group flush>
                         <b-list-group-item class="d-flex justify-content-between align-items-center">
-                            Ranking {{vol.id}}
-                            <b-form-rating id="rating-disabled" color="#ff8800" inline :value="vol.id" no-border readonly></b-form-rating>                            
+                            Ranking {{vol.ranking}}
+                            <b-form-rating id="rating-disabled" color="#ff8800" inline :value="vol.ranking" no-border readonly></b-form-rating>                            
                         
                         </b-list-group-item>
                         <b-list-group-item class="d-flex justify-content-between align-items-center">
@@ -86,6 +86,7 @@ export default {
         work: null,
         voluntaries: null,
         filteredVoluntaries: null,
+        rankings: null,
         voluntariesList: [],
         text: '',
         valueR1: 0,
@@ -112,35 +113,63 @@ export default {
             this.work = await datos.data;
             let datoss = await axios.get('http://localhost:8080/tareas/getUnsummoned/'+ this.$route.params.id);
             this.voluntaries = await datoss.data;
+            let datosss = await axios.get("http://localhost:8080/ranking/all");
+            this.rankings = await datosss.data;
+
             let voluntariesLen = this.voluntaries.length;
+            let rankLen = this.rankings.length;
             let i = 0;
 
             while(i < voluntariesLen){
                 this.voluntariesList.push({
                     nombre: this.voluntaries[i].nombre,
                     fnacimiento: this.voluntaries[i].fnacimiento,
-                    id: this.voluntaries[i].id
+                    id: this.voluntaries[i].id,
+                    ranking: this.getVoluntaryRanking(this.voluntaries[i].id, rankLen)
                 });
                 i = i + 1;
             }
         },
 
-        usersFilter(value1, value2){
-            this.filter = 1;
-            this.newUserList = [];
-            const auxV = value2;
-            if(value1 > value2){
-                value2 = value1
-                value1 = auxV;
-            }
-
-            this.users.forEach(element => {
-                if(element.ranking >= value1 && element.ranking <= value2){
-                    this.newUserList.push(element);
+        getVoluntaryRanking(volId, rankLen){
+            let j = 0;
+            console.log("rankLen = ", rankLen, "and j = ", j);
+            while(j < rankLen){
+                console.log("VolId = ", volId, " this.rankings[i].id_voluntario = ", this.rankings[j].id_voluntario);
+                if(this.rankings[j].id_voluntario == volId){
+                    return this.rankings[j].puntaje;
                 }
-            });
+                j = j + 1;
+            }
+            return 0;
+        },
 
-            return this.newUserList
+        async usersFilter(value1, value2){
+            const stringV1 = value1.toString();
+            const stringV2 = value2.toString();
+            const queryString = "http://localhost:8080/voluntarios/getVolWithRankingIn/" + stringV1 + "/and/" + stringV2;
+            //this.filter = 1;
+            let filterData = await axios.get(queryString)
+            this.filteredVoluntaries = await filterData.data;
+            console.log(this.filteredVoluntaries);
+
+            this.voluntariesList = [];
+            let voluntariesLen = this.filteredVoluntaries.length;
+            let rankLen = this.rankings.length;
+            let i = 0;
+            console.log("volLen: ", voluntariesLen);
+            while(i < voluntariesLen){
+                console.log("i = ", i);
+                this.voluntariesList.push({
+                    nombre: this.filteredVoluntaries[i].nombre,
+                    fnacimiento: this.filteredVoluntaries[i].fnacimiento,
+                    id: this.filteredVoluntaries[i].id,
+                    ranking: this.getVoluntaryRanking(this.filteredVoluntaries[i].id, rankLen)
+                });
+                i = i + 1;
+            }
+            this.filter = 1;
+            console.log("Assigned filtered voluntaries", this.voluntariesList);
         },
 
         addVoluntarie(id_vol) {
