@@ -171,9 +171,9 @@ export default {
 
         addVoluntarie(id_vol) {
             axios.post('http://localhost:8080/ranking/add', {
-            puntaje: -1,
-            flg_invitado: -1,
-            flg_participa: -1,
+            puntaje: 0,
+            flg_invitado: 0,
+            flg_participa: 0,
             id_voluntario: id_vol,
             id_tarea: this.work.id
             }).then(location.reload());
