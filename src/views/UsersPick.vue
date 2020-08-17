@@ -1,11 +1,11 @@
 <template>
     <div class="UsersPick">
+        <!--
         <h5>Seleccionar voluntarios para tarea: <b>{{work.nombre}}</b></h5>
         <b-form-select v-model="optionSelected" :options="searchOptions" class="mb-3"></b-form-select>
         <b-form-input v-if="optionSelected === 1"
         class="mb-3" v-model="text" placeholder="Ingrese el nombre"></b-form-input>
-        
-        <b-card v-if="optionSelected === 2" class="mb-3"> 
+        <b-card v-if="optionSelected === 1" class="mb-3"> 
             <b-row>
                 <b-col>
                     <h5>Ranking entre:</h5>
@@ -24,12 +24,11 @@
                 </b-col>
             </b-row>
         </b-card>
-
         <b-form-input v-if="optionSelected === 3"
         class="mb-3" v-model="text" placeholder="Ingrese la habilidad"></b-form-input>
         <b-form-input v-if="optionSelected === 4"
         class="mb-3" v-model="text" placeholder="Ingrese la emergencia"></b-form-input>
-
+        -->
 
         <b-row>
             <b-col v-for="vol in voluntariesList" :key="vol.id"
@@ -45,7 +44,7 @@
                         <b-list-group-item class="d-flex justify-content-between align-items-center">
                             Ranking {{vol.ranking}}
                             <b-form-rating id="rating-disabled" color="#ff8800" inline :value="vol.ranking" no-border readonly></b-form-rating>                            
-                        
+                        <!--
                         </b-list-group-item>
                         <b-list-group-item class="d-flex justify-content-between align-items-center">
                             Tareas completadas
@@ -54,6 +53,7 @@
                         <b-list-group-item class="d-flex justify-content-between align-items-center">
                             Habilidades
                             <b-avatar icon="award" :size="40" badge="666" badge-top variant="ligth" badge-variant="dark"></b-avatar>
+                            -->
                         </b-list-group-item>
                     </b-list-group>
 
@@ -93,10 +93,7 @@ export default {
         valueR2: 5,
         searchOptions: [
           { value: null, text: '-- Buscar --', disabled: true },
-          { value: 1, text: 'Buscar por nombre' },
-          { value: 2, text: 'Buscar por ranking' },
-          { value: 3, text: 'Buscar por habilidades' },
-          { value: 4, text: 'Buscar por emergencia'}
+          { value: 1, text: 'Buscar por ranking' }
         ],
         newUserList: [],
         filter: 0
