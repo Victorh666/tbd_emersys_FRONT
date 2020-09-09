@@ -27,6 +27,8 @@
 
             <b-nav-item :to="{name: 'Work'}">Tareas</b-nav-item>
 
+            <b-nav-item :to="{name: 'FindVoluntarie'}">Encontrar Voluntarios</b-nav-item>
+
             <b-nav-item to="">Iniciar Sesion</b-nav-item>
           </b-navbar-nav>
         </b-collapse>

@@ -67,6 +67,11 @@ Vue.use(VueRouter)
     path: '/userspick/:id',
     name: 'UsersPcik',
     component: () => import('../views/UsersPick.vue')
+  },
+  {
+    path: '/FindVoluntarie',
+    name: 'FindVoluntarie',
+    component: () => import('../views/FindVoluntarie.vue')
   }
 
 ]
