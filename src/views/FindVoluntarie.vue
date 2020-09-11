@@ -1,7 +1,7 @@
 <template>
     <div class="FindVoluntarie">
         <h1> Ubicación de voluntarios </h1>
-        <div> {{point}}</div>
+        <div> ubicación: {{point}}</div>
         <div> {{message}} </div>
         <div id="mapid"></div>
     </div>
@@ -50,22 +50,26 @@ export default {
         },
         async getPoints(map){
             try{
-               let response = await axios.get('elLinkDelBackEnd');
+               let response = await axios.get('http://localhost:8080/voluntarios/all');
                let dataPoints= response.data;
+               
                dataPoints= 
                dataPoints.forEach(point => {
-                   let p=[point.latitude,point.longitude]
+                   let p=[point.latitud,point.longitud]
                    let marker = L.marker(p, {icon:myIcon})
-                   .bindPopup(point.name)
+                   .bindPopup(point.nombre)
                    this.points.push(marker);
                });
                this.points.forEach(p=>{
                    p.addTo(map)
                })
+               
+               console.log(dataPoints)
             }
             catch(error){
                 console.log('error', error);
                 this.message = 'Ocurrio un error'
+                console.log(axios.get('http://localhost:8080/voluntarios/all').data)
             }
         }
     },
@@ -81,8 +85,8 @@ export default {
             _this.longitude= e.latlng.lng;
         });
         //marcador de prueba
-        L.marker([-33.446, -70.654], {icon:myIcon}).addTo(this.mymap);
-        //this.getPoints(this.mymap);
+        //L.marker([-33.446, -70.654], {icon:myIcon}).addTo(this.mymap);
+        this.getPoints(this.mymap);
 
 
     }
