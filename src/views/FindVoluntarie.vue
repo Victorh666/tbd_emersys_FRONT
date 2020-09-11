@@ -2,8 +2,6 @@
     <div class="FindVoluntarie">
         <h1 align="center"> Ubicación de voluntarios </h1>
         <h3 align="center"> Ubicación: {{point}}</h3>
-
-        <h3> Región: </h3>
         <b-row > 
             <b-button type="button" v-on:click="filtro(regionActual)" >Filtrar</b-button>
             <b-col  cols="9">                    
