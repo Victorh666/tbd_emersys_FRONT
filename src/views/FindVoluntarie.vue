@@ -38,6 +38,7 @@ export default {
             mymap:null,
             regionActual:null,
             regions:[
+                {id:0,nombre:"Todos los voluntarios"},
                 {id: 15, nombre:"Arica y Parinacota",latitud:-18.425,longitud:-69.673},
                 {id:1, nombre: "Tarapacá",latitud:-20.287,longitud:-69.405},
                 {id:2, nombre:"Antofagasta",latitud: -23.552,longitud: -68.926},
@@ -79,24 +80,32 @@ export default {
             console.log("este es region:",region)
             if(region != null)
             {
-            axios.get('http://localhost:8080/voluntarios/getAllWithin/'+region.id).then(resp =>
-            {
-                this.clearMarkers()
-                this.mymap.setView([region.latitud, region.longitud],7);
-                resp.data.forEach(point => {
-                    let p=[point.latitud,point.longitud]
-                    let marker = L.marker(p, {icon:myIcon})
-                    .bindPopup(point.nombre)
-                    this.points.push(marker);
-                }),
-                this.points.forEach(p=>{
-                    p.addTo(this.mymap)
-                })
-            })
-            .catch(error => {
-                console.log('error', error);
-                this.message = 'Ocurrio un error'
-                });
+                if(region.id!=0)
+                {
+                    axios.get('http://localhost:8080/voluntarios/getAllWithin/'+region.id).then(resp =>
+                    {
+                        this.clearMarkers()
+                        this.mymap.setView([region.latitud, region.longitud],7);
+                        resp.data.forEach(point => {
+                            let p=[point.latitud,point.longitud]
+                            let marker = L.marker(p, {icon:myIcon})
+                            .bindPopup(point.nombre)
+                            this.points.push(marker);
+                        }),
+                        this.points.forEach(p=>{
+                            p.addTo(this.mymap)
+                        })
+                    })
+                    .catch(error => {
+                        console.log('error', error);
+                        this.message = 'Ocurrio un error'
+                        });
+                }
+                else{
+                    this.clearMarkers()
+                    this.getPoints(this.mymap)
+                    this.mymap.setView([-33.446, -70.654],7);
+                }
             }
         },
         async getPoints(map){
